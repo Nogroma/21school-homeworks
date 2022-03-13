@@ -1,10 +1,22 @@
 // Copyright 2021, Nogroma. All rights reserved.
 #include <stdio.h>
-#include <stdint.h>
-#include <stdbool.h>
 
-bool isInteger(double d) {
-    return d == (int64_t)d;
+/*
+* Checking a number for an integer
+*
+* Results:
+* -1 – Not int
+* 1 - int
+*/
+int isInteger(double d) {
+    int num = d;
+    ++num;
+
+    if ((num - d) != 1) {
+        return -1;
+    }
+
+    return 1;
 }
 
 int division(int a, int b) {
@@ -28,7 +40,9 @@ int main() {
 
     scanf("%f %f", &first_number_dirty, &second_number_dirty);
 
-    if (!isInteger(first_number_dirty) || !isInteger(second_number_dirty)) {
+    if (
+        isInteger(first_number_dirty) != 1 ||
+        isInteger(second_number_dirty) != 1) {
         return 1;
     }
 
@@ -36,7 +50,7 @@ int main() {
     int second_number = second_number_dirty;
 
     printf(
-        "%d, %d, %d ",
+        "%d %d %d ",
         sum(first_number, second_number),
         subtraction(first_number, second_number),
         multiplication(first_number, second_number));
