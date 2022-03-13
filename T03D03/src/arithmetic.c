@@ -1,24 +1,6 @@
 // Copyright 2021, Nogroma. All rights reserved.
 #include <stdio.h>
 
-/*
-* Checking a number for an integer
-*
-* Results:
-* -1 – Not int
-* 1 - int
-*/
-int isInteger(double d) {
-    int num = d;
-    ++num;
-
-    if ((num - d) != 1) {
-        return -1;
-    }
-
-    return 1;
-}
-
 int division(int a, int b) {
     return a / b;
 }
@@ -36,18 +18,13 @@ int sum(int a, int b) {
 }
 
 int main() {
-    float first_number_dirty, second_number_dirty;
+    int first_number, second_number;
 
-    scanf("%f %f", &first_number_dirty, &second_number_dirty);
+    if (scanf("%d %d", &first_number, &second_number) != 2){
+        printf("n/a");
 
-    if (
-        isInteger(first_number_dirty) != 1 ||
-        isInteger(second_number_dirty) != 1) {
         return 1;
     }
-
-    int first_number = first_number_dirty;
-    int second_number = second_number_dirty;
 
     printf(
         "%d %d %d ",
