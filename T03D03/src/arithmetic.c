@@ -1,4 +1,4 @@
-// Copyright 2021, Nogroma. All rights reserved.
+// Copyright 2022, Nogroma. All rights reserved.
 #include <stdio.h>
 
 int division(int a, int b) {
