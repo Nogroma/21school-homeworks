@@ -14,7 +14,7 @@ void sort_vertical(int **matrix, int n, int m, int **result_matrix);
 */
 void sort_horizontal(int **matrix, int n, int m, int **result_matrix);
 
-void sort_horizontal(int **matrix, int n, int m, int **result_matrix) {
+int *matrix_to_array(int **matrix, int n, int m) {
     int *array = (int *)malloc(sizeof(int) * n * m);
     int array_index = 0;
 
@@ -25,6 +25,12 @@ void sort_horizontal(int **matrix, int n, int m, int **result_matrix) {
         }
     }
 
+    return array;
+}
+
+void sort_array(int *array, int length) {
+    int array_index = 0;
+
     for (int i = 0; i < array_index - 1; i++) {
         for (int j = 0; j < array_index - i - 1; j++) {
             if (array[j] > array[j + 1]) {
@@ -34,16 +40,22 @@ void sort_horizontal(int **matrix, int n, int m, int **result_matrix) {
             }
         }
     }
+}
+
+void sort_horizontal(int **matrix, int n, int m, int **result_matrix) {
+    int *array = matrix_to_array(matrix, n, m);
+
+    sort_array(array, n * m);
 
     int k = -1;
 
-    for (int i = 0; i < m; i++) {
+    for (int i = 0; i < n; i++) {
         if (i % 2 == 0) {
-            for (int j = 0; j < n; j++) {
+            for (int j = 0; j < m; j++) {
                 result_matrix[i][j] = array[++k];
             }
         } else {
-            for (int j = n - 1; j >= 0; j--) {
+            for (int j = m - 1; j >= 0; j--) {
                 result_matrix[i][j] = array[++k];
             }
         }
@@ -51,25 +63,9 @@ void sort_horizontal(int **matrix, int n, int m, int **result_matrix) {
 }
 
 void sort_vertical(int **matrix, int n, int m, int **result_matrix) {
-    int *array = (int *)malloc(sizeof(int) * n * m);
-    int array_index = 0;
+    int *array = matrix_to_array(matrix, n, m);
 
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            array[array_index] = matrix[i][j];
-            array_index++;
-        }
-    }
-
-    for (int i = 0; i < array_index - 1; i++) {
-        for (int j = 0; j < array_index - i - 1; j++) {
-            if (array[j] > array[j + 1]) {
-                int tmp = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = tmp;
-            }
-        }
-    }
+    sort_array(array, n * m);
 
     int k = -1;
     for (int i = 0; i < n; i++) {
@@ -116,11 +112,16 @@ int **allocate_memory_for_matrix(int row_count, int column_count) {
     return matrix;
 }
 
+
 int main() {
     int n, m;
 
     printf("Введите высоту и ширину матрицы: \n");
     scanf("%d %d", &n, &m);
+    if (n == 0 && m == 0) {
+        printf("n/a");
+        return 0;
+    }
 
     int **matrix = allocate_memory_for_matrix(n, m);
     int **result = allocate_memory_for_matrix(n, m);
