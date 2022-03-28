@@ -1,5 +1,5 @@
-#ifndef DATA_STAT_H
-#define DATA_STAT_H
+#ifndef SRC_DATA_LIBS_DATA_STAT_H_
+#define SRC_DATA_LIBS_DATA_STAT_H_
 
 double max(double *data, int n);
 double min(double *data, int n);
