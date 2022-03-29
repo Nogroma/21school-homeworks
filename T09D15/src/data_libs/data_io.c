@@ -3,8 +3,7 @@
 
 
 void input(double *data, int n) {
-    printf("Введите длину массива: \n");
-    scanf("%d", &n);
+    printf("Заполните массив:");
     for (int i = 0; i < n; i++) {
         if (scanf("%lf", &data[i]) != 1) {
             printf("n/a");
