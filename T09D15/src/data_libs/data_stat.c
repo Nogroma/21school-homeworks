@@ -31,3 +31,15 @@ double variance(double *data, int n) {
 double mean(double *data, int n) {
     return (max(data, n) + min(data, n)) / 2;
 }
+
+void sort(double *data, int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = (n - 1); j > i; j--) {
+            if (data[j - 1] > data[j]) {
+                int temp = data[j - 1];
+                data[j - 1] = data[j];
+                data[j] = temp;
+            }
+        }
+    }
+}
